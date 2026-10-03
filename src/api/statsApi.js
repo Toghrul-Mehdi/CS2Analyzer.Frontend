@@ -34,3 +34,20 @@ export async function getCurrentPlayers(signal) {
   const payload = await response.json();
   return { playerCount: readPlayerCount(payload) };
 }
+
+/** Daxil olmuş istifadəçinin CS2 statistikası. */
+export async function getUserStats(steamId, token, signal) {
+  const headers = { Accept: 'application/json' };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const response = await fetch(`${API_BASE_URL}/api/Stats/user/${encodeURIComponent(steamId)}`, {
+    signal,
+    headers,
+  });
+
+  if (!response.ok) {
+    throw new ApiError(`Backend ${response.status} status kodu qaytardı.`, response.status);
+  }
+
+  return response.json();
+}

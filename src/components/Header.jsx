@@ -8,7 +8,7 @@ export default function Header({ variant = 'solid' }) {
   return (
     <header className={`header header--${variant}`}>
       <a className="brand" href="/" aria-label="CS2 Analyzer ana səhifə">
-        CS2 Analyzer
+        <span className="brand-mark">CS2</span> Analyzer
       </a>
 
       {status === 'ready' &&
