@@ -14,3 +14,8 @@ export function formatDecimal(value, fractionDigits = 1) {
   }
   return decimalFormats.get(fractionDigits).format(value);
 }
+const compactFormat = new Intl.NumberFormat('az-AZ', { notation: 'compact', maximumFractionDigits: 1 });
+
+export const formatPercent = (value, fractionDigits = 1) => `${formatDecimal(value, fractionDigits)}%`;
+export const formatMoney = (value) => `$${formatNumber(Math.round(value))}`;
+export const formatCompact = (value) => compactFormat.format(value);
